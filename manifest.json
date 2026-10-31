@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Elenco Sync — Challenge Place Helper",
+  "version": "1.2.0",
+  "description": "Importa jogadores do SofaScore para uma equipe já existente no Challenge Place usando a sessão autenticada do navegador.",
+  "host_permissions": [
+    "https://challenge.place/*",
+    "https://www.challenge.place/*",
+    "https://img.sofascore.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://challenge.place/c/*/competitor/*", "https://www.challenge.place/c/*/competitor/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+ELENCO SYNC — HELPER PARA CHALLENGE PLACE (v1.2.0)
+
+CHROME / CHROMIUM (COMPUTADOR)
+1. Extraia este ZIP para uma pasta.
+2. Abra chrome://extensions.
+3. Ative “Modo do desenvolvedor”.
+4. Clique em “Carregar sem compactação” e escolha a pasta extraída (onde está manifest.json).
+5. Abra o perfil da equipe no Challenge Place, já autenticado na sua conta.
+6. No app Elenco Sync, selecione a equipe e clique em “Enviar para equipe”.
+7. No perfil, clique em “Importar elenco”, cole o pacote JSON copiado ou carregue o arquivo JSON baixado.
+8. Valide o pacote, confira o mapeamento e clique em “Iniciar importação”.
+
+TAMPERMONKEY / USERSCRIPT
+Use o arquivo elenco-sync.user.js que acompanha o projeto completo. Instale-o em um navegador compatível com Tampermonkey e permita execução em challenge.place.
+
+SEGURANÇA E LIMITES
+- O helper não solicita nem lê senha, cookies ou tokens.
+- O helper utiliza os formulários visíveis do site com a sessão que já está aberta no navegador.
+- A foto é baixada somente de img.sofascore.com e enviada pelo campo de arquivo do formulário, quando disponível.
+- O helper só envia se conseguir mapear Nome, Número, Posição e Foto e identificar um botão Salvar/Adicionar.
+- Se a página não expuser esses campos ou se o salvamento não puder ser confirmado, o processo para. Não tente repetir um jogador com estado incerto; recarregue e confira primeiro.
+- A integração é beta e precisa ser validada com a interface e permissões da sua conta.
