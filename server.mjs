@@ -18,6 +18,14 @@ function json(res, status, body) {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'no-store',
     'x-content-type-options': 'nosniff'
+  });function json(res, status, body) {
+  res.writeHead(status, {
+    'content-type': 'application/json; charset=utf-8',
+    'cache-control': 'no-store',
+    'x-content-type-options': 'nosniff',
+    'access-control-allow-origin': '*',
+    'access-control-allow-methods': 'GET, OPTIONS',
+    'access-control-allow-headers': 'Content-Type'
   });
   res.end(JSON.stringify(body));
 }
@@ -168,6 +176,15 @@ async function searchChallengeTeams(challengeId, teamName) {
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    if (req.method === 'OPTIONS') {
+    res.writeHead(204, {
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'GET, OPTIONS',
+      'access-control-allow-headers': 'Content-Type',
+      'access-control-max-age': '86400'
+    });
+    return res.end();
+    }
   if (req.method === 'GET' && url.pathname === '/api/health') {
     return json(res, 200, { ok: true, name: 'Elenco Sync', version: '1.2.0' });
   }
