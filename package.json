@@ -1,0 +1,11 @@
+{
+  "name": "elenco-sync-sofascore-challenge-place",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Importador web de elenco do SofaScore para equipes do Challenge Place com helper de navegador",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
