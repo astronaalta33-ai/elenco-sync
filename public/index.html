@@ -91,7 +91,7 @@
     function renderSummaryOnly(){ $('summary').textContent=`${players.length} jogadores · elenco carregado`; $('selectedSummary').textContent=`${selected().length} selecionados`; ['csvBtn','exportJsonBtn','copyBtn'].forEach(id=>$(id).disabled=!selected().length); $('prepareBtn').disabled=!selected().length || !selectedChallengeTeam; }
     async function importPlayers(){
       const url=$('sourceUrl').value.trim();$('importBtn').disabled=true;setStatus('Consultando o elenco no SofaScore…');
-      try{const r=await fetch(`/api/sofascore/players?url=${encodeURIComponent(url)}`);const data=await r.json();if(!r.ok)throw new Error(data.error||'Falha na importação.');players=data.players.map(p=>({...normalize(p),selected:true}));importedTeamName=data.teamName||'Equipe do SofaScore';render();setStatus(`${data.count} jogadores importados do SofaScore. Procurando a equipe correspondente no Challenge Place…`, 'ok');await searchChallengeTeam(importedTeamName);}
+      try{const r=await fetch(`https://elenco-sync.onrender.com/api/sofascore/players?url=${encodeURIComponent(url)}`);const data=await r.json();if(!r.ok)throw new Error(data.error||'Falha na importação.');players=data.players.map(p=>({...normalize(p),selected:true}));importedTeamName=data.teamName||'Equipe do SofaScore';render();setStatus(`${data.count} jogadores importados do SofaScore. Procurando a equipe correspondente no Challenge Place…`, 'ok');await searchChallengeTeam(importedTeamName);}
       catch(err){setStatus(`${err.message} Você também pode usar “Importar JSON” para carregar um arquivo/retorno JSON do elenco.`, 'error');}
       finally{$('importBtn').disabled=false;}
     }
